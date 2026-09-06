@@ -1,7 +1,5 @@
 # Amazon E-Commerce — Growth, BI Maturity & Data Warehouse Analysis
 
-**Author:** Aakarsh Dadha – 220260398
-
 ## Overview
 This project analyzes Amazon.com, Inc.'s Business Intelligence maturity,
 data sources, and data-warehousing infrastructure, and proposes
