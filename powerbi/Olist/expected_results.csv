@@ -1,0 +1,9 @@
+measure,expected_value
+Orders,99441
+Merchandise Value,13221498.11
+Average Order Value,137.0415857501192
+Observed Customers,93358
+Repeat Purchase Rate,0.03000278497825575
+Cancellation Rate,0.006285133898492574
+On Time Rate,0.9322690992018244
+AL On Time Rate,0.7859

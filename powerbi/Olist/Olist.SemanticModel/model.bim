@@ -1,0 +1,99 @@
+{
+  "name": "Olist",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "VerifiedKPI",
+        "columns": [
+          {
+            "name": "metric",
+            "dataType": "string",
+            "sourceColumn": "metric",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "value",
+            "dataType": "double",
+            "sourceColumn": "value",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "unit",
+            "dataType": "string",
+            "sourceColumn": "unit",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Orders",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Orders\")",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Merchandise Value",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Delivered merchandise value\")",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Average Order Value",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Average order value\")",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Observed Customers",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Observed delivered customers\")",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Repeat Purchase Rate",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Repeat purchase rate\")",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "Cancellation Rate",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"Cancellation rate\")",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "On Time Rate",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"On-time delivery\")",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "AL On Time Rate",
+            "expression": "CALCULATE(MAX('VerifiedKPI'[value]), 'VerifiedKPI'[metric] = \"AL on-time delivery\")",
+            "formatString": "0.00%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "VerifiedKPI",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/Krgaurav93084/Amazon-Ecommerce-Growth/main/olist_analytics/verified_kpis.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"metric\", type text}, {\"value\", type number}, {\"unit\", type text}}, \"en-US\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"VerifiedKPI\"]"
+      }
+    ]
+  }
+}

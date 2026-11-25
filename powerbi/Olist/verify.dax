@@ -1,0 +1,12 @@
+// Run in Power BI Desktop DAX Query View after Refresh.
+EVALUATE
+ROW(
+    "Orders", [Orders],
+    "Merchandise Value", [Merchandise Value],
+    "Average Order Value", [Average Order Value],
+    "Observed Customers", [Observed Customers],
+    "Repeat Purchase Rate", [Repeat Purchase Rate],
+    "Cancellation Rate", [Cancellation Rate],
+    "On Time Rate", [On Time Rate],
+    "AL On Time Rate", [AL On Time Rate]
+)
