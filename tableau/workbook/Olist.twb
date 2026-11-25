@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workbook original-version="18.1" version="18.1" source-platform="mac" xmlns:user="http://www.tableausoftware.com/xml/user">
+  <style-theme name="clean" />
+  <datasources>
+    <datasource caption="kpi" inline="true" name="textscan.kpi" version="18.1">
+      <connection class="textscan" directory="Data" filename="kpi.csv" password="" server="">
+        <relation name="kpi#csv" table="[kpi#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="real" name="orders" ordinal="0" />
+            <column datatype="real" name="value" ordinal="1" />
+            <column datatype="real" name="ontime" ordinal="2" />
+            <column datatype="real" name="cancel" ordinal="3" />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class="column">
+            <remote-name>orders</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[orders]</local-name>
+            <parent-name>[kpi#csv]</parent-name>
+            <remote-alias>orders</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>value</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[value]</local-name>
+            <parent-name>[kpi#csv]</parent-name>
+            <remote-alias>value</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>ontime</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ontime]</local-name>
+            <parent-name>[kpi#csv]</parent-name>
+            <remote-alias>ontime</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>cancel</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[cancel]</local-name>
+            <parent-name>[kpi#csv]</parent-name>
+            <remote-alias>cancel</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled="yes" />
+      <column caption="Orders" datatype="real" name="[orders]" role="measure" type="quantitative" />
+      <column caption="Merchandise value (BRL)" datatype="real" name="[value]" role="measure" type="quantitative" />
+      <column caption="On-time delivery (%)" datatype="real" name="[ontime]" role="measure" type="quantitative" />
+      <column caption="Cancellation rate (%)" datatype="real" name="[cancel]" role="measure" type="quantitative" />
+    </datasource>
+    <datasource caption="monthly" inline="true" name="textscan.monthly" version="18.1">
+      <connection class="textscan" directory="Data" filename="monthly.csv" password="" server="">
+        <relation name="monthly#csv" table="[monthly#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="category" ordinal="0" />
+            <column datatype="real" name="amount" ordinal="1" />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class="column">
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[monthly#csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>amount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[amount]</local-name>
+            <parent-name>[monthly#csv]</parent-name>
+            <remote-alias>amount</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled="yes" />
+      <column caption="Month" datatype="string" name="[category]" role="dimension" type="nominal" />
+      <column caption="Monthly merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+    </datasource>
+    <datasource caption="states" inline="true" name="textscan.states" version="18.1">
+      <connection class="textscan" directory="Data" filename="states.csv" password="" server="">
+        <relation name="states#csv" table="[states#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="category" ordinal="0" />
+            <column datatype="real" name="amount" ordinal="1" />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class="column">
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[states#csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>amount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[amount]</local-name>
+            <parent-name>[states#csv]</parent-name>
+            <remote-alias>amount</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled="yes" />
+      <column caption="State" datatype="string" name="[category]" role="dimension" type="nominal" />
+      <column caption="On-time delivery by state (%)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+    </datasource>
+    <datasource caption="category" inline="true" name="textscan.category" version="18.1">
+      <connection class="textscan" directory="Data" filename="category.csv" password="" server="">
+        <relation name="category#csv" table="[category#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="category" ordinal="0" />
+            <column datatype="real" name="amount" ordinal="1" />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class="column">
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[category#csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>amount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[amount]</local-name>
+            <parent-name>[category#csv]</parent-name>
+            <remote-alias>amount</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled="yes" />
+      <column caption="Category" datatype="string" name="[category]" role="dimension" type="nominal" />
+      <column caption="Top category merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+    </datasource>
+    <datasource caption="forecast" inline="true" name="textscan.forecast" version="18.1">
+      <connection class="textscan" directory="Data" filename="forecast.csv" password="" server="">
+        <relation name="forecast#csv" table="[forecast#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="category" ordinal="0" />
+            <column datatype="real" name="amount" ordinal="1" />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class="column">
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[forecast#csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class="column">
+            <remote-name>amount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[amount]</local-name>
+            <parent-name>[forecast#csv]</parent-name>
+            <remote-alias>amount</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled="yes" />
+      <column caption="Month" datatype="string" name="[category]" role="dimension" type="nominal" />
+      <column caption="Holdout actual merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="Orders">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="kpi" name="textscan.kpi" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.kpi">
+            <column caption="Orders" datatype="real" name="[orders]" role="measure" type="quantitative" />
+            <column-instance column="[orders]" derivation="Sum" name="[sum:orders:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[textscan.kpi].[sum:orders:qk]" />
+            </encodings>
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Merchandise value (BRL)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="kpi" name="textscan.kpi" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.kpi">
+            <column caption="Merchandise value (BRL)" datatype="real" name="[value]" role="measure" type="quantitative" />
+            <column-instance column="[value]" derivation="Sum" name="[sum:value:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[textscan.kpi].[sum:value:qk]" />
+            </encodings>
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="On-time delivery (%)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="kpi" name="textscan.kpi" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.kpi">
+            <column caption="On-time delivery (%)" datatype="real" name="[ontime]" role="measure" type="quantitative" />
+            <column-instance column="[ontime]" derivation="Sum" name="[sum:ontime:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[textscan.kpi].[sum:ontime:qk]" />
+            </encodings>
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Cancellation rate (%)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="kpi" name="textscan.kpi" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.kpi">
+            <column caption="Cancellation rate (%)" datatype="real" name="[cancel]" role="measure" type="quantitative" />
+            <column-instance column="[cancel]" derivation="Sum" name="[sum:cancel:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[textscan.kpi].[sum:cancel:qk]" />
+            </encodings>
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Monthly merchandise value (BRL)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="monthly" name="textscan.monthly" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.monthly">
+            <column caption="Month" datatype="string" name="[category]" role="dimension" type="nominal" />
+            <column caption="Monthly merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+            <column-instance column="[category]" derivation="None" name="[none:category:nk]" pivot="key" type="nominal" />
+            <column-instance column="[amount]" derivation="Sum" name="[sum:amount:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Line" />
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[textscan.monthly].[sum:amount:qk]</rows>
+        <cols>[textscan.monthly].[none:category:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name="On-time delivery by state (%)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="states" name="textscan.states" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.states">
+            <column caption="On-time delivery by state (%)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+            <column caption="State" datatype="string" name="[category]" role="dimension" type="nominal" />
+            <column-instance column="[amount]" derivation="Sum" name="[sum:amount:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[category]" derivation="None" name="[none:category:nk]" pivot="key" type="nominal" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[textscan.states].[none:category:nk]</rows>
+        <cols>[textscan.states].[sum:amount:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name="Top category merchandise value (BRL)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="category" name="textscan.category" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.category">
+            <column caption="Top category merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+            <column caption="Category" datatype="string" name="[category]" role="dimension" type="nominal" />
+            <column-instance column="[amount]" derivation="Sum" name="[sum:amount:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[category]" derivation="None" name="[none:category:nk]" pivot="key" type="nominal" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[textscan.category].[none:category:nk]</rows>
+        <cols>[textscan.category].[sum:amount:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name="Holdout actual merchandise value (BRL)">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="forecast" name="textscan.forecast" />
+          </datasources>
+          <datasource-dependencies datasource="textscan.forecast">
+            <column caption="Month" datatype="string" name="[category]" role="dimension" type="nominal" />
+            <column caption="Holdout actual merchandise value (BRL)" datatype="real" name="[amount]" role="measure" type="quantitative" />
+            <column-instance column="[category]" derivation="None" name="[none:category:nk]" pivot="key" type="nominal" />
+            <column-instance column="[amount]" derivation="Sum" name="[sum:amount:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Line" />
+            <style>
+              <style-rule element="mark">
+                <format attr="color" value="#247B94" />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[textscan.forecast].[sum:amount:qk]</rows>
+        <cols>[textscan.forecast].[none:category:nk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="Executive Dashboard">
+      <style />
+      <size maxheight="850" maxwidth="1400" minheight="850" minwidth="1400" sizing-mode="fixed" />
+      <zones>
+        <zone id="1" type-v2="text" x="1000" y="1000" w="98000" h="8000">
+          <formatted-text>
+            <run bold="true" fontsize="20">Olist | E-commerce and supply chain analytics</run>
+          </formatted-text>
+        </zone>
+        <zone id="2" type-v2="text" x="1000" y="8500" w="98000" h="5000">
+          <formatted-text>
+            <run fontsize="11">Historical Olist data | Independent portfolio case study | SQL and Python validation passed</run>
+          </formatted-text>
+        </zone>
+        <zone id="3" name="Orders" x="1000" y="14500" w="23750" h="14500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="4" name="Merchandise value (BRL)" x="25750" y="14500" w="23750" h="14500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="5" name="On-time delivery (%)" x="50500" y="14500" w="23750" h="14500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="6" name="Cancellation rate (%)" x="75250" y="14500" w="23750" h="14500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="7" name="Monthly merchandise value (BRL)" x="1000" y="30000" w="48500" h="33500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="8" name="On-time delivery by state (%)" x="50500" y="30000" w="48500" h="33500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="9" name="Top category merchandise value (BRL)" x="1000" y="64500" w="48500" h="33500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+        <zone id="10" name="Holdout actual merchandise value (BRL)" x="50500" y="64500" w="48500" h="33500" show-title="true">
+          <zone-style>
+            <format attr="border-color" value="#DCE6EB" />
+            <format attr="border-style" value="solid" />
+            <format attr="border-width" value="1" />
+          </zone-style>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class="worksheet" name="Orders" />
+    <window class="worksheet" name="Merchandise value (BRL)" />
+    <window class="worksheet" name="On-time delivery (%)" />
+    <window class="worksheet" name="Cancellation rate (%)" />
+    <window class="worksheet" name="Monthly merchandise value (BRL)" />
+    <window class="worksheet" name="On-time delivery by state (%)" />
+    <window class="worksheet" name="Top category merchandise value (BRL)" />
+    <window class="worksheet" name="Holdout actual merchandise value (BRL)" />
+    <window class="dashboard" name="Executive Dashboard" maximized="1" />
+  </windows>
+</workbook>
