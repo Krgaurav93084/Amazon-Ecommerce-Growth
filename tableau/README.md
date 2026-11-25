@@ -1,5 +1,5 @@
 # Tableau | E-Commerce & Supply Chain Analytics
-Mac-compatible Tableau Desktop Professional or Public Edition authoring kit. This folder contains instructions and a workflow that packages previously validated historical outputs. It is not a completed Tableau workbook or a Tableau runtime test.
+Mac-compatible Tableau Desktop Professional or Public Edition authoring kit. This folder contains instructions, a data-kit workflow, and a generated Tableau packaged workbook with eight worksheets and one dashboard. The workbook has passed ZIP/XML, data-path and dashboard-reference checks; it has not been opened or rendered by Tableau.
 
 [Historical validation](https://github.com/Krgaurav93084/Amazon-Ecommerce-Growth/actions/runs/45620807997) · [Tableau data-kit workflow](https://github.com/Krgaurav93084/Amazon-Ecommerce-Growth/actions/workflows/tableau-data-kit.yml)
 
@@ -30,4 +30,8 @@ Suggested layout: 1280 x 800; four KPI cards across top, monthly trend and state
 4. For a public portfolio, use Server > Tableau Public > Save to Tableau Public with your own authenticated Tableau account. Use only public, non-confidential data and respect the original dataset license. Save an actual image of the rendered dashboard and upload the workbook, screenshot and public link to GitHub.
 5. Record Tableau version, tested metrics, and any differences.
 
-The existing Power BI project remains separate. Tableau calculations do not execute DAX or Power Query. This kit has not been opened in Tableau; no workbook, screenshot or public Tableau link is claimed.
+The existing Power BI project remains separate. Tableau calculations do not execute DAX or Power Query. The packaged workbook was generated and structurally checked. No genuine Tableau screenshot, runtime test or published Tableau Public link is claimed.
+
+## Generated workbook
+[Download Olist.twbx](workbook/Olist.twbx) · [Workbook source XML](workbook/Olist.twb) · [Validation report](workbook/validation.json) · [Build workflow evidence](https://github.com/Krgaurav93084/Amazon-Ecommerce-Growth/actions/runs/45634681518).
+Open the TWBX directly in Tableau Desktop on macOS. If Tableau requests an upgrade or connection repair, save the repaired workbook before publishing. The underlying CSVs are embedded; this workbook is programmatically assembled, not saved by Tableau Desktop. Workbook compatibility and rendering require an actual Tableau session. Existing dashboard SVG/PNG previews are not Tableau screenshots.
