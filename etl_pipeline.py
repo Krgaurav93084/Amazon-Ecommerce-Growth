@@ -55,7 +55,7 @@ def extract_advertising_data() -> pd.DataFrame:
     }
     df = pd.DataFrame(data)
     df["acos"] = (df["ad_spend"] / df["ad_revenue"]) * 100         # Ad Cost of Sales
-    df["roas"] = (df["ad_revenue"] / df["ad_spend"]) * 100         # Return on Ad Spend
+    df["roas"] = df["ad_revenue"] / df["ad_spend"].replace(0, float("nan"))  # Return on Ad Spend (multiple)
     return df
 
 
@@ -88,7 +88,7 @@ def transform_in_warehouse(conn: sqlite3.Connection) -> None:
     query_ad_performance = """
         SELECT week_start, ad_spend, ad_revenue,
                ROUND(acos, 1) AS acos_pct,
-               ROUND(roas, 1) AS roas_pct
+               ROUND(roas, 2) AS roas_multiple
         FROM ads_raw
         ORDER BY week_start;
     """
