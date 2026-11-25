@@ -1,13 +1,13 @@
 CREATE VIEW olist_portfolio.monthly_kpis AS
 WITH m AS (
-SELECT date_trunc('month',purchase_date)::date month, count(*) orders,
+SELECT date_trunc('month',purchase_date)::date AS "month", count(*) orders,
 count(*) FILTER(WHERE order_status='delivered') delivered_orders,
 sum(sales_value) revenue,
 avg(sales_value) FILTER(WHERE order_status='delivered') aov,
 avg((order_status='canceled')::int) cancellation_rate,
 avg(on_time) on_time_rate
 FROM olist_portfolio.fact_orders GROUP BY 1
-), l AS (SELECT *,lag(revenue) OVER(ORDER BY month) previous_revenue FROM m)
+), l AS (SELECT *,lag(revenue) OVER(ORDER BY "month") previous_revenue FROM m)
 SELECT *, (revenue-previous_revenue)/NULLIF(previous_revenue,0) mom_growth FROM l;
 CREATE VIEW olist_portfolio.customer_value AS
 WITH s AS (SELECT max(purchase_date)::date+1 cutoff FROM olist_portfolio.fact_orders),
