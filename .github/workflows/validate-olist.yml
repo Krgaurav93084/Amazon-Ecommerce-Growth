@@ -1,0 +1,86 @@
+name: Validate public Olist analytics
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/validate-olist.yml'
+      - 'olist_analytics/**'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: portfolio
+          POSTGRES_PASSWORD: portfolio
+          POSTGRES_DB: portfolio
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      OLIST_DATABASE_URL: postgresql+psycopg://portfolio:portfolio@localhost:5432/portfolio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r olist_analytics/requirements.txt
+      - name: Download pinned public mirror of Olist dataset
+        run: |
+          mkdir -p olist_analytics/data
+          for table in orders customers order_items order_payments products; do
+            curl --fail --location --retry 2 "https://raw.githubusercontent.com/spdrio/Brazilian-E-Commerce-Public-Dataset-by-Olist/fa0cc6d1aff713d3c8b9a1e633b56889881848bf/files/olist_${table}_dataset.csv" -o "olist_analytics/data/olist_${table}_dataset.csv"
+          done
+          python - <<'PY'
+          import pandas as pd
+          from pathlib import Path
+          expected={'orders':99441,'customers':99441,'order_items':112650,'order_payments':103886,'products':32951}
+          for name,count in expected.items():
+              p=Path('olist_analytics/data')/f'olist_{name}_dataset.csv'
+              actual=len(pd.read_csv(p))
+              assert actual==count,(name,actual,count)
+              print(name,actual)
+          PY
+      - name: Execute PostgreSQL pipeline
+        run: python olist_analytics/run.py olist_analytics/data
+      - name: Reconcile KPI outputs
+        run: |
+          python - <<'PY'
+          import json
+          import pandas as pd
+          from pathlib import Path
+          d=Path('olist_analytics/output')
+          q=json.loads((d/'quality.json').read_text())
+          k=json.loads((d/'kpis.json').read_text())
+          monthly=pd.read_csv(d/'monthly_kpis.csv')
+          fact=pd.read_csv(d/'fact_orders.csv')
+          assert q['orders_raw']==k['orders']==len(fact)==fact.order_id.nunique()==monthly.orders.sum()
+          assert abs(monthly.revenue.sum()-k['delivered_merchandise_value_brl'])<.01
+          for name in ['repeat_purchase_rate','cancellation_rate','on_time_rate']:
+              assert 0<=k[name]<=1
+          print(json.dumps(k,indent=2))
+          print((d/'findings.md').read_text())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: olist-verified-aggregate-results
+          path: |
+            olist_analytics/output/quality.json
+            olist_analytics/output/kpis.json
+            olist_analytics/output/customer_model.json
+            olist_analytics/output/findings.md
+            olist_analytics/output/dashboard.png
+            olist_analytics/output/monthly_kpis.csv
+            olist_analytics/output/state_kpis.csv
+            olist_analytics/output/category_kpis.csv
+            olist_analytics/output/forecast_scores.csv
+            olist_analytics/output/forecast_holdout.csv
+          if-no-files-found: error
