@@ -62,3 +62,7 @@ dashboards for sales, profitability, and advertising performance.
   Reinventing Forecasting With Machine Learning.*
 - Gartner (2015). *ITScore Overview for BI and Analytics.*
 - GeneAka (2022). *Build a modern data architecture on AWS...*
+
+## Portfolio analytics upgrades
+- [Public Olist PostgreSQL analytics](olist_analytics/README.md): real-data ingestion code, KPI analysis, forecast and customer revenue prediction. Dataset download and execution required.
+- [Synthetic retail simulation](analytics_v2/README.md): reproducible simulated orders, A/B testing and Excel reporting. Neither extension uses Amazon internal data.
