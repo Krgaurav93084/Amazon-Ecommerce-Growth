@@ -1,0 +1,9 @@
+metric,value,unit
+Orders,99441,count
+Delivered merchandise value,13221498.11,BRL
+Average order value,137.0415857501192,BRL
+Observed delivered customers,93358,count
+Repeat purchase rate,0.03000278497825575,ratio
+Cancellation rate,0.006285133898492574,ratio
+On-time delivery,0.9322690992018244,ratio
+AL on-time delivery,0.7859,ratio
